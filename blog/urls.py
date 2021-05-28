@@ -18,5 +18,7 @@ urlpatterns = [
     # blog/users/'username'/profile
     path('users/<str:username>/profile', views.profile, name='profile'),
     # blog/about
-    path('about', views.about, name=''),
+    path('about', views.about, name='about'),
+    path('doc', views.doc, name='doc'),
+    path('openapi.json', views.openapi, name='openapi.json')
 ]

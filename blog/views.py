@@ -118,3 +118,295 @@ def about(request):
     }
 
     return JsonResponse(data, safe=False)
+
+
+def doc(request):
+    return render(request, 'doc.html')
+
+def openapi(request):
+    data = {
+        "swagger": "2.0",
+        "title": "Simple Blog",
+        "info": {
+            "title": "Simple Blog",
+            "description": "My first python/django blog.",
+            "contact": {
+                "name": "Volodymyr Kravchuk",
+                "github": "https://github.com/ded_volodya"
+            }
+        },
+        "basePath": "/",
+        "paths": {
+            "/blog/about": {
+                "get": {
+                    "tags": [
+                        "/blog/about"
+                    ],
+                    "summary": "Get app description",
+                    "description": "",
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "app_name": {
+                                        "type": "string"
+                                    },
+                                    "about": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/blog/register": {
+                "get": {
+                    "tags": [
+                        "/blog/register"
+                    ],
+                    "summary": "Register new user",
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "username",
+                            "in": "path",
+                            "description": "",
+                            "required": True,
+                            "type": "string"
+                        },
+                        {
+                            "name": "password",
+                            "in": "path",
+                            "description": "",
+                            "required": True,
+                            "type": "string"
+                        },
+                        {
+                            "name": "email",
+                            "in": "path",
+                            "description": "",
+                            "required": True,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "json",
+                                "properties": {
+                                    "result": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/blog/login": {
+                "get": {
+                    "tags": [
+                        "/blog/login"
+                    ],
+                    "summary": "Log in user",
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "password",
+                            "in": "path",
+                            "description": "",
+                            "required": True,
+                            "type": "string"
+                        },
+                        {
+                            "name": "username",
+                            "in": "path",
+                            "description": "",
+                            "required": True,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "result": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/blog/users/{username}/profile": {
+                "get": {
+                    "tags": [
+                        "/blog/users/{username}/profile"
+                    ],
+                    "summary": "Return user profile information",
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/blog/get_posts": {
+                "get": {
+                    "tags": [
+                        "/blog/get_posts"
+                    ],
+                    "summary": "List of latest posts",
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "array",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "author": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    },
+                                    "publish": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/blog/post/{postId}/add_comment": {
+                "get": {
+                    "tags": [
+                        "/blog/post/{postId}/add_comment"
+                    ],
+                    "summary": "Leave comment for post",
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "content",
+                            "in": "path",
+                            "description": "",
+                            "required": True,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "post_id": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "comment_id": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "result": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/blog/add_post": {
+                "get": {
+                    "tags": [
+                        "/blog/add_post"
+                    ],
+                    "summary": "Add new post",
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "title",
+                            "in": "path",
+                            "description": "",
+                            "required": False,
+                            "type": "string"
+                        },
+                        {
+                            "name": "content",
+                            "in": "path",
+                            "description": "",
+                            "required": False,
+                            "type": "int"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "post_id": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "result": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "securityDefinitions": {
+            "api_key": {
+                "type": "apiKey",
+                "name": "api_key",
+                "in": "header"
+            }
+        }
+    }
+    return JsonResponse(data, safe=False)
