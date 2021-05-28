@@ -10,9 +10,6 @@ class Post(models.Model):
     content = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
 
-    class Meta:
-        ordering = ('-publish',)
-
     def __str__(self):
         return self.title
 
@@ -24,9 +21,6 @@ class Comment(models.Model):
                              on_delete=models.CASCADE)
     content = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
-
-    class Meta:
-        ordering = ('-publish',)
 
     def __str__(self):
         return self.content

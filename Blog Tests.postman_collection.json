@@ -1,0 +1,445 @@
+{
+	"info": {
+		"_postman_id": "0d1e1685-8580-41ad-8fb6-271fed288fa8",
+		"name": "Blog Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "somebody-profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/somebody/profile\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.username).to.eql('somebody');",
+							"    pm.expect(responseJson.email).to.eql('somebody@mail.com');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/somebody/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"somebody",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oncetold-profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/oncetold/profile\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.username).to.eql('oncetold');",
+							"    pm.expect(responseJson.email).to.eql('oncetold@mail.com');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/oncetold/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"oncetold",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "not-exist-profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/vasia/profile\", () => {",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.error).to.eql('User does not exists');",
+							"});",
+							"",
+							"pm.test(\"user/vasia/profile code 200\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/vasia/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"vasia",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/vasia/profile\", () => {",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.error).to.eql('User does not exists');",
+							"});",
+							"",
+							"pm.test(\"user/vasia/profile code 200\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/vasia/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"vasia",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login not existing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/vasia/profile\", () => {",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.error).to.eql('User does not exists');",
+							"});",
+							"",
+							"pm.test(\"user/vasia/profile code 200\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/vasia/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"vasia",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login existing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/vasia/profile\", () => {",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.error).to.eql('User does not exists');",
+							"});",
+							"",
+							"pm.test(\"user/vasia/profile code 200\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/vasia/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"vasia",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "about",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/vasia/profile\", () => {",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.error).to.eql('User does not exists');",
+							"});",
+							"",
+							"pm.test(\"user/vasia/profile code 200\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/vasia/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"vasia",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register existing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/vasia/profile\", () => {",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.error).to.eql('User does not exists');",
+							"});",
+							"",
+							"pm.test(\"user/vasia/profile code 200\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/vasia/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"vasia",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/vasia/profile\", () => {",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.error).to.eql('User does not exists');",
+							"});",
+							"",
+							"pm.test(\"user/vasia/profile code 200\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/vasia/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"vasia",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"user/vasia/profile\", () => {",
+							"    //parse the response json and test three properties",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.error).to.eql('User does not exists');",
+							"});",
+							"",
+							"pm.test(\"user/vasia/profile code 200\", () => {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/blog/users/vasia/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"blog",
+						"users",
+						"vasia",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

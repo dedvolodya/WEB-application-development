@@ -14,7 +14,7 @@ urlpatterns = [
     # blog/register?username=..&email=..&password=..
     path('register', views.register, name='register'),
     # blog/login?username=..&password=..
-    path('login', views.login, name='login'),
+    path('login', views.login_f, name='login'),
     # blog/users/'username'/profile
     path('users/<str:username>/profile', views.profile, name='profile'),
     # blog/about

@@ -1,6 +1,6 @@
 import json
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -27,7 +27,7 @@ def get_posts(request):
 
 
 def add_post(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         if request.user.is_authenticated:
             content = request.GET['content']
             title = request.GET['title']
@@ -37,16 +37,16 @@ def add_post(request):
         else:
             data = {'error': 'no logged user'}
     else:
-        data = {'error': 'for creating new post POST method should be used'}
+        data = {'error': 'for creating new post GET method should be used'}
     return JsonResponse(data, safe=False)
 
 
 def register(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         username = request.GET['username']
         password = request.GET['password']
         email = request.GET['email']
-        user = User.objects.filter(username=username, password=password, email=email).first()
+        user = User.objects.filter(username=username).first()
         if user is not None:
             data = {'result': 'user already exists'}
         else:
@@ -54,12 +54,12 @@ def register(request):
             user.save()
             data = {'result': 'registered'}
     else:
-        data = {'result': 'for creating new user POST method should be used'}
-    return JsonResponse(data, safe=False)
+        data = {'result': 'for creating new user GET method should be used'}
+    return JsonResponse(data)
 
 
 def add_comment(request, post_id):
-    if request.method == 'POST':
+    if request.method == 'GET':
         if request.user.is_authenticated:
             post = Post.objects.filter(id=post_id).first()
             if post is not None:
@@ -72,11 +72,11 @@ def add_comment(request, post_id):
         else:
             data = {'error': 'no logged user'}
     else:
-        data = {'error': 'for leaving comments POST method should be used'}
+        data = {'error': 'for leaving comments GET method should be used'}
     return JsonResponse(data, safe=False)
 
 
-def login(request):
+def login_f(request):
     if request.method == 'GET':
         username = request.GET['username']
         password = request.GET['password']
