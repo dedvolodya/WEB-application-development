@@ -25,8 +25,10 @@ SECRET_KEY = 'django-insecure-+5^%yd)as2%x2v-$qi3+!#4z*cn*%=ar*l)d!-ptkl35kn0v__
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # Application definition
 
@@ -135,3 +137,12 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = "vantuyyya@gmail.com"
+EMAIL_HOST_PASSWORD = "*****"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

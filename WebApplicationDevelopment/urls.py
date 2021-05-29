@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from WebApplicationDevelopment import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
     path('chat/', include('chat.urls')),
+    path('send_mail/', views.send_email_view),
+    path('long_work/', views.long_task_view),
 ]
